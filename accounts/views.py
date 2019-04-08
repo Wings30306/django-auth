@@ -20,15 +20,14 @@ def logout(request):
 
 
 def login(request):
-    """Return a login page"""
     if request.user.is_authenticated:
         return redirect(reverse('index'))
+
     if request.method == "POST":
         login_form = UserLoginForm(request.POST)
 
         if login_form.is_valid():
-            user = auth.authenticate(username=request.POST['username'],
-                                     password=request.POST['password'])
+            user = auth.authenticate(username=request.POST['username'], password=request.POST['password'])
 
             if user:
                 auth.login(user=user, request=request)
@@ -41,3 +40,8 @@ def login(request):
     else:
         login_form = UserLoginForm()
     return render(request, "login.html", {"login_form": login_form})
+
+
+def registration(request):
+    """Render the registration page"""
+    return render(request, "registration.html")
