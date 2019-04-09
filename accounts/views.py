@@ -64,5 +64,4 @@ def registration(request):
             else:
                 messages.error(request, "Unable to register your account at this time")
     
-    else:
-        return render(request, "registration.html", {"registration_form": registration_form})
+    return render(request, "registration.html", {"registration_form": registration_form})
